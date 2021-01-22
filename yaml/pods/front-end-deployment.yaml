@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end-deployment
+  labels:
+    app: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front-end
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+        - name: frontend
+          image: chanthruuthaya/frontend:latest
+          env:
+            - name: TOKEN
+              value: /var/run/secrets/kubernetes.io/serviceaccount/token
+          ports:
+          - containerPort: 5000

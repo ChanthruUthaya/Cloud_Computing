@@ -1,0 +1,5 @@
+fabric_scripts/config.yaml
+node_js_service/node_modules
+status/
+fabric_scripts/test_keynovts
+scaling_commands.txt

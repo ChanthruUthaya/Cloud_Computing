@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timer-deployment
+  labels:
+    app: timer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timer
+  template:
+    metadata:
+      labels:
+        app: timer
+    spec:
+      containers:
+        - name: timer
+          image: chanthruuthaya/timer:latest
+          ports:
+          - containerPort: 5000

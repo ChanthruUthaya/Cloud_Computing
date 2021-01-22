@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+  labels:
+    app: worker
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: workernode
+          image: chanthruuthaya/workersec:latest
+          ports:
+          - containerPort: 5000
+          resources:
+            limits:
+              cpu: 1500m
+            requests:
+              cpu: 350m
+          env: 
+            - name: aws_access_key_id
+              value: ASIAZ4P4OSNPNA4GMKOM
+            - name: aws_secret_access
+              value: aCNjtHy+FDtCNx2rddEQGsoNsEl7jVI5x4Yx/tqo
+            - name: aws_session_token
+              value: FwoGZXIvYXdzEPn//////////wEaDCilwDaQQRwowe4lwSLFAYgsAeWk0TIf7eCdbUBOAf8eIt6PSUuvspSBiMEGqry9iHW2hnhNw8l+ItmR9MH+zWux8kjNaP9r+kCyhMrDZKNeBxlttQRGTZBieoRWu30Y1gT9IzNnIqX19vQEdIhm6rYpl3sacaQ21NQED2Wp47N3k4J1XpmXe6aFe1yFi4mz1xdCwV6lNY0cY1iE92XnCLcK6rEl1IWLooyveKIsB2/JqXpJgXhNaLlgJmSLdAHla3TT+3c02aCEtCykpKIoOTsakeDyKIPayv4FMi0ksySlT/J04bPmkhXXN7SXhixm/3aF88dbRNlhym9NgYU25Ub+hvEgkdmpKh0=
+            - name: s3_Buck_Name
+              value: chanthru-test-bucket
